@@ -73,4 +73,17 @@ class ViewController: UICollectionViewController, UICollectionViewDataSource {
   override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return items.count;
   }
+
+  // MARK: <UICollectionViewDelegateFlowLayout>
+
+  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+
+    let bounds = items[indexPath.row].boundingRectWithSize(
+      CGSize( width:collectionView.bounds.width, height: CGFloat.max ),
+      options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+      attributes: nil,
+      context: nil)
+    return CGSize(width: collectionView.bounds.width, height: ceil(bounds.height))
+  }
+  
 }
